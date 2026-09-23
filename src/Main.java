@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * Programa de prueba para las clases Deck y Card.
  */
@@ -18,6 +20,9 @@ public class Main {
 
         System.out.println("\n--- hand ---");
         deck.hand();
+
+        System.out.println("\nPresiona Enter para repartir el resto del deck...");
+        new Scanner(System.in).nextLine();
 
         // Se reparten manos hasta que ya no alcanzan las cartas,
         // para comprobar el manejo de la excepción.
