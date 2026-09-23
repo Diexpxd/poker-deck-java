@@ -1,6 +1,4 @@
-/**
- * Representa una carta de poker con sus tres atributos: palo, color y valor.
- */
+// Clase que representa una carta
 public class Card {
 
     private final String palo;
@@ -25,7 +23,7 @@ public class Card {
         return valor;
     }
 
-    // Formato pedido en la actividad: {Palo},{Color},{Valor}
+    // para que se imprima como Palo,Color,Valor
     @Override
     public String toString() {
         return palo + "," + color + "," + valor;

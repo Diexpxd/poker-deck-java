@@ -5,12 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-/**
- * Representa el deck (baraja) de 52 cartas de poker.
- * Usa dos atributos del Collection Framework:
- *  - cartas: List<Card> (ArrayList) con las cartas que quedan en el deck.
- *  - coloresPorPalo: Map<String, String> (LinkedHashMap) que relaciona cada palo con su color.
- */
+// Clase del deck, aqui estan las 52 cartas
 public class Deck {
 
     private static final String[] VALORES = {
@@ -18,7 +13,9 @@ public class Deck {
     };
     private static final int CARTAS_POR_MANO = 5;
 
+    // lista con las cartas que quedan
     private final List<Card> cartas;
+    // cada palo con su color
     private final Map<String, String> coloresPorPalo;
     private final Random random = new Random();
 
@@ -29,6 +26,7 @@ public class Deck {
         coloresPorPalo.put("Picas", "Negro");
         coloresPorPalo.put("Diamantes", "Rojo");
 
+        // se crean las 13 cartas de cada palo
         cartas = new ArrayList<>();
         for (Map.Entry<String, String> palo : coloresPorPalo.entrySet()) {
             for (String valor : VALORES) {
@@ -41,13 +39,12 @@ public class Deck {
         return cartas.size();
     }
 
-    /** Mezcla el deck. */
     public void shuffle() {
         Collections.shuffle(cartas);
         System.out.println("Se mezcló el Deck.");
     }
 
-    /** Muestra y remueve la primera carta del deck. */
+    // saca la primera carta
     public Card head() {
         validarCartasDisponibles(1);
         Card carta = cartas.remove(0);
@@ -56,7 +53,7 @@ public class Deck {
         return carta;
     }
 
-    /** Selecciona una carta al azar, la muestra y la remueve del deck. */
+    // saca una carta al azar
     public Card pick() {
         validarCartasDisponibles(1);
         Card carta = cartas.remove(random.nextInt(cartas.size()));
@@ -65,7 +62,7 @@ public class Deck {
         return carta;
     }
 
-    /** Regresa un arreglo de cinco cartas, las muestra y las remueve del deck. */
+    // saca 5 cartas y las regresa en un arreglo
     public Card[] hand() {
         validarCartasDisponibles(CARTAS_POR_MANO);
         Card[] mano = new Card[CARTAS_POR_MANO];
@@ -77,6 +74,7 @@ public class Deck {
         return mano;
     }
 
+    // si ya no hay cartas suficientes lanza la excepcion
     private void validarCartasDisponibles(int necesarias) {
         if (cartas.size() < necesarias) {
             throw new IllegalStateException("No hay suficientes cartas en el deck (se necesitan "
